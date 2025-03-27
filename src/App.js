@@ -3,10 +3,13 @@ import { useState } from "react";
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null)); // creates array with 9 null elements
   const [xIsNext, setXIsNext] = useState(true);
+  const gameFull = squares.every(item => item !== null);
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
     status = "Winner: " + winner;
+  } else if (gameFull) {
+    status = "Tie";
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
